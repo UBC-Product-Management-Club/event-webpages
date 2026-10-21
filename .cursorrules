@@ -1,0 +1,6 @@
+This is the Product Jackpot event site (UBC PMC). Stack: Vite + React + Tailwind v4 + motion.
+- Read BRAND.md before any visual change. Match the Instagram designs in /reference (if present) and the existing look: dark maroon, neon, gold, casino cards/chips.
+- All editable content lives in src/data/content.js. Add sponsors, mentors/judges, registration URL and pricing THERE, not in components.
+- Keep animations lightweight (transform/opacity) and respect prefers-reduced-motion.
+- Mobile first. Check 390px and 1280px widths.
+- Assets are in public/assets. Reference them with the asset() helper in src/components/ui.jsx.
