@@ -44,7 +44,7 @@ function Item({ q, a, open, onToggle, id, n }) {
 const DICE = [
   // desktop spots (lg: absolute), landing rotation, where they are thrown in from
   { tone: 'ivory', size: 92, rest: 14, pos: 'lg:left-[2.5%] lg:top-[9%]', from: { x: 640, y: -420, rotate: -620 }, delay: 0 },
-  { tone: 'red', size: 78, rest: -22, pos: 'lg:left-[5.5%] lg:top-[34%]', from: { x: 760, y: -380, rotate: 560 }, delay: 0.18 },
+  { tone: 'red', size: 78, rest: -22, pos: 'lg:left-[5.5%] lg:top-[8.25rem]', from: { x: 760, y: -380, rotate: 560 }, delay: 0.18 },
   { tone: 'ivory', size: 86, rest: 28, pos: 'lg:right-[3%] lg:top-[20%]', from: { x: -520, y: -420, rotate: 640 }, delay: 0.32 },
 ]
 
