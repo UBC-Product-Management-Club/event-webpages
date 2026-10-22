@@ -177,14 +177,7 @@ export default function Hero() {
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
-          <Reveal y={16}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/60 bg-black/30 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-gold-200 sm:text-sm">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-signal shadow-[0_0_10px_#e33148]" />
-              {EVENT.dateLabel}
-            </span>
-          </Reveal>
-
-          <h1 className="mt-7 leading-[0.88]" aria-label="Product Jackpot">
+          <h1 className="leading-[0.88]" aria-label="Product Jackpot">
             <motion.span
               aria-hidden
               className="neon-gold block text-[clamp(1.6rem,5.4vw,3.3rem)] font-extrabold uppercase tracking-[0.2em]"
@@ -205,8 +198,12 @@ export default function Hero() {
             </motion.span>
           </h1>
 
+          <Reveal delay={0.45} y={16}>
+            <p className="gold-text mt-6 text-lg font-extrabold uppercase tracking-[0.14em] sm:text-2xl">{EVENT.dateLabel}</p>
+          </Reveal>
+
           <Reveal delay={0.5} y={16}>
-            <p className="gold-text mt-6 text-lg font-extrabold uppercase tracking-[0.14em] sm:text-2xl">{EVENT.tagline}</p>
+            <p className="gold-text mt-2 text-lg font-extrabold uppercase tracking-[0.14em] sm:text-2xl">{EVENT.tagline}</p>
           </Reveal>
 
           {/* the two buttons are playing cards */}
