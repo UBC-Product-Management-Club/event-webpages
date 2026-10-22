@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { animate, motion, useMotionValue } from 'motion/react'
+import { animate, motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from 'motion/react'
+import GearyModel from './GearyModel'
 import Roulette3D from './Roulette3D'
 import { EVENT } from '../data/content'
 import { CardButton, Float, RegisterCard, Reveal, asset } from './ui'
@@ -27,6 +28,73 @@ function ChipO() {
 const isRed = (slot) => slot % 2 === 0
 const mod = (n, m) => ((n % m) + m) % m
 
+/**
+ * Geary as a thick cut-out: darkened copies stacked behind him give him depth,
+ * he tilts towards the pointer (and sways on his own), and a light/shade
+ * gradient clipped to his outline moves as he turns.
+ */
+const GEARY_DEPTH = 14 // layers
+const GEARY_STEP = 1.4 // px between layers
+
+function Geary3D({ src, alt, className = '' }) {
+  const reduce = useReducedMotion()
+  const px = useMotionValue(0) // pointer, -1..1
+  const py = useMotionValue(0)
+  const sway = useMotionValue(0)
+  const sx = useSpring(px, { stiffness: 60, damping: 14 })
+  const sy = useSpring(py, { stiffness: 60, damping: 14 })
+  const rotateY = useTransform([sx, sway], ([x, s]) => x * 24 + s)
+  const rotateX = useTransform(sy, (y) => -y * 12)
+  const lightX = useTransform(rotateY, (r) => `${50 - r * 1.6}%`)
+  const lightY = useTransform(rotateX, (r) => `${30 + r * 2}%`)
+  const sheen = useMotionTemplate`radial-gradient(circle at ${lightX} ${lightY}, rgba(255,255,255,0.55), rgba(255,255,255,0) 45%), linear-gradient(160deg, rgba(255,255,255,0) 40%, rgba(0,0,0,0.45))`
+
+  useEffect(() => {
+    if (reduce) return
+    const a = animate(sway, [-10, 10], { duration: 5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' })
+    const onMove = (e) => {
+      px.set((e.clientX / window.innerWidth) * 2 - 1)
+      py.set((e.clientY / window.innerHeight) * 2 - 1)
+    }
+    window.addEventListener('pointermove', onMove)
+    return () => {
+      a.stop()
+      window.removeEventListener('pointermove', onMove)
+    }
+  }, [reduce])
+
+  const mask = { WebkitMaskImage: `url(${src})`, maskImage: `url(${src})`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%' }
+
+  return (
+    <div className={className} style={{ perspective: '900px' }}>
+      <motion.div className="relative" style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}>
+        {/* the edge: back layers darken towards the rear */}
+        {Array.from({ length: GEARY_DEPTH }, (_, i) => {
+          const d = GEARY_DEPTH - i
+          const last = i === 0
+          return (
+            <img
+              key={d}
+              src={src}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 h-full w-full"
+              style={{
+                transform: `translateZ(${-d * GEARY_STEP}px)`,
+                filter: `brightness(${0.22 + (i / GEARY_DEPTH) * 0.3})${last ? ' drop-shadow(0 22px 26px rgba(0,0,0,0.55))' : ''}`,
+              }}
+            />
+          )
+        })}
+        {/* the face */}
+        <img src={src} alt={alt} className="relative block w-full" />
+        {/* lighting, clipped to his outline */}
+        <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ ...mask, background: sheen, mixBlendMode: 'soft-light' }} />
+      </motion.div>
+    </div>
+  )
+}
+
 function RouletteGeary() {
   const wheel = useMotionValue(0)
   const ball = useMotionValue(0)
@@ -34,6 +102,7 @@ function RouletteGeary() {
   const riding = useRef(null)
   const spinningRef = useRef(false)
   const [flat, setFlat] = useState(false) // fallback if WebGL is unavailable
+  const [flatGeary, setFlatGeary] = useState(false)
   const idle = useRef(null)
   const [pick, setPick] = useState(null)
   const [phase, setPhase] = useState('idle') // idle | spinning | done
@@ -102,13 +171,16 @@ function RouletteGeary() {
         {/* Geary, standing behind the table */}
         <div className="absolute left-1/2 top-[1%] z-0 w-[52%] -translate-x-1/2">
           <Float amp={5} rot={0} duration={3.4}>
-            <motion.img
-              src={asset('geary-happy.png')}
-              alt="Geary, the Product Jackpot dealer"
-              className="w-full drop-shadow-[0_18px_24px_rgba(0,0,0,0.5)]"
+            <motion.div
               animate={won ? { y: [0, -26, 0, -16, 0], scale: [1, 1.05, 1] } : { y: 0 }}
               transition={{ duration: 0.9 }}
-            />
+            >
+              {flatGeary ? (
+                <Geary3D src={asset('geary-happy.png')} alt="Geary, the Product Jackpot dealer" className="w-full" />
+              ) : (
+                <GearyModel onFail={() => setFlatGeary(true)} />
+              )}
+            </motion.div>
           </Float>
         </div>
 

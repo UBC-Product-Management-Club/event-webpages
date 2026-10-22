@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { getLook, lookKit } from './looks'
 
 /**
  * A real 3D roulette wheel (three.js), driven by motion values owned by the parent:
@@ -38,6 +39,8 @@ export default function Roulette3D({ wheel, ball, ballR, riding, spinning, onFai
                 renderer.domElement.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block'
         host.appendChild(renderer.domElement)
 
+        const look = getLook()
+        const { mat, light, render, dispose: disposeLook } = await lookKit(THREE, renderer, look)
         const scene = new THREE.Scene()
         const pmrem = new THREE.PMREMGenerator(renderer)
         const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
@@ -51,6 +54,7 @@ export default function Roulette3D({ wheel, ball, ballR, riding, spinning, onFai
         const rim = new THREE.PointLight(0xe33148, 6, 6)
         rim.position.set(1.6, 0.8, 1.4)
         scene.add(rim)
+        light(scene)
 
         const camera = new THREE.PerspectiveCamera(27, 1, 0.1, 50)
         const elev = 31 * RAD
@@ -59,15 +63,16 @@ export default function Roulette3D({ wheel, ball, ballR, riding, spinning, onFai
         camera.lookAt(0, 0, 0)
 
         // ───────── materials
-        const gold = new THREE.MeshStandardMaterial({ color: 0xe8a54b, metalness: 1, roughness: 0.28 })
-        const goldDark = new THREE.MeshStandardMaterial({ color: 0xa8651d, metalness: 1, roughness: 0.4 })
-        const wood = new THREE.MeshStandardMaterial({ color: 0x4d0a14, metalness: 0.2, roughness: 0.35, side: THREE.DoubleSide })
-        const blackM = new THREE.MeshStandardMaterial({ color: 0x0b0405, metalness: 0.3, roughness: 0.4, side: THREE.DoubleSide })
-        const redM = new THREE.MeshStandardMaterial({ color: 0xc10c0c, metalness: 0, roughness: 0.9, envMapIntensity: 0.12, side: THREE.DoubleSide })
-        const darkM = new THREE.MeshStandardMaterial({ color: 0x1d0805, metalness: 0, roughness: 0.9, envMapIntensity: 0.12, side: THREE.DoubleSide })
-        const coreM = new THREE.MeshStandardMaterial({ color: 0x1f0703, metalness: 0.4, roughness: 0.35, side: THREE.DoubleSide })
+        const gold = mat(0xe8a54b, { metalness: 1, roughness: 0.28 })
+        const goldDark = mat(0xa8651d, { metalness: 1, roughness: 0.4 })
+        const wood = mat(0x4d0a14, { metalness: 0.2, roughness: 0.35, side: THREE.DoubleSide })
+        const blackM = mat(0x0b0405, { metalness: 0.3, roughness: 0.4, side: THREE.DoubleSide })
+        const redM = mat(0xc10c0c, { metalness: 0, roughness: 0.9, envMapIntensity: 0.12, side: THREE.DoubleSide, outline: false })
+        const darkM = mat(0x1d0805, { metalness: 0, roughness: 0.9, envMapIntensity: 0.12, side: THREE.DoubleSide, outline: false })
+        const coreM = mat(0x1f0703, { metalness: 0.4, roughness: 0.35, side: THREE.DoubleSide })
 
         const root = new THREE.Group()
+        root.scale.y = look.wheelHeight
         scene.add(root)
 
         // ───────── static bowl (the outer ring the ball runs on)
@@ -171,8 +176,9 @@ export default function Roulette3D({ wheel, ball, ballR, riding, spinning, onFai
         // ───────── the ball
         const ballMesh = new THREE.Mesh(
           new THREE.SphereGeometry(0.036, 32, 24),
-          new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.12, metalness: 0, emissive: 0x887766, emissiveIntensity: 0.45 })
+          mat(0xffffff, { roughness: 0.12, metalness: 0, emissive: 0x887766, emissiveIntensity: 0.45 })
         )
+        ballMesh.scale.y = 1 / look.wheelHeight // keep the ball round on a squashed wheel
         root.add(ballMesh)
 
         // ───────── sizing
@@ -214,7 +220,7 @@ export default function Roulette3D({ wheel, ball, ballR, riding, spinning, onFai
           let y = surf(r) + 0.036
           if (spinning.current && r < 0.9) y += 0.03 * Math.abs(Math.sin(now * 0.021)) * Math.min(1, (r - 0.73) / 0.12)
           ballMesh.position.set(r * Math.sin(ang * RAD), y, -r * Math.cos(ang * RAD))
-          renderer.render(scene, camera)
+          render(scene, camera)
         }
         raf = requestAnimationFrame(frame)
 
@@ -227,6 +233,7 @@ export default function Roulette3D({ wheel, ball, ballR, riding, spinning, onFai
             if (o.material) [].concat(o.material).forEach((m) => m.dispose())
           })
           envTex.dispose()
+          disposeLook()
           pmrem.dispose()
           renderer.dispose()
           renderer.domElement.remove()
