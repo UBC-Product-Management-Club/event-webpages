@@ -13,7 +13,8 @@ export const EVENT = {
   pricing: '', // TODO: e.g. "$10 per participant". Empty shows "details coming soon".
 
   contactEmail: 'connect@ubcpmc.com',
-  newsletterEndpoint: '', // TODO: POST endpoint for the footer newsletter form
+  // Loops "custom form" endpoint for the footer newsletter (public, no API key needed)
+  newsletterEndpoint: 'https://app.loops.so/api/newsletter-form/cm0fr4vhn014puiozc8lbi63j',
 }
 
 export const ABOUT = {
@@ -109,13 +110,13 @@ export const NAV = [
 
 // Same footer as the other PMC event pages
 export const FOOTER_LINKS = [
+  { label: 'Home', href: 'https://ubcpmc.com/' },
   { label: 'About Us', href: 'https://ubcpmc.com/about' },
-  { label: 'What We Offer', href: 'https://ubcpmc.com/' },
   { label: 'Events', href: 'https://ubcpmc.com/events' },
-  { label: 'Sponsor Us', href: 'https://ubcpmc.com/' },
-  { label: 'Meet the Team', href: 'https://ubcpmc.com/' },
   { label: 'Become a member', href: 'https://portal.ubcpmc.com/' },
 ]
+
+export const CONTACT_EMAILS = ['partnerships@ubcpmc.com', 'connect@ubcpmc.com']
 
 export const SOCIALS = [
   { name: 'Instagram', href: 'https://www.instagram.com/ubcpmc', icon: 'instagram' },
