@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // base is "/" for a (sub)domain deploy such as productjackpot.ubcpmc.com.
-// If you ever host under a subpath (e.g. username.github.io/product-jackpot),
-// build with:  VITE_BASE=/product-jackpot/ npm run build
+// When hosted under a subpath (e.g. ubc-product-management-club.github.io/event-webpages),
+// build with:  VITE_BASE=/event-webpages/ npm run build  (the deploy workflow does this)
 export default defineConfig({
   base: process.env.VITE_BASE || '/',
   plugins: [react(), tailwindcss()],

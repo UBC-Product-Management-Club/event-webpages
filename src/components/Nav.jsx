@@ -20,7 +20,7 @@ export default function Nav() {
       }`}
     >
       <div className="mx-auto flex h-[78px] max-w-6xl sm:h-[92px] items-center justify-between px-5">
-        <a href="https://ubcpmc.com/" className="shrink-0" aria-label="UBC PMC home">
+        <a href="https://ubcpmc.com/" target="_top" className="shrink-0" aria-label="UBC PMC home">
           <img src={asset('pmc-logo.png')} alt="pmc" className="h-[52px] w-auto sm:h-[60px]" />
         </a>
 

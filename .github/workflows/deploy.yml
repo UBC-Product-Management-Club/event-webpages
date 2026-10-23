@@ -24,7 +24,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # served at <org>.github.io/<repo>/ until the custom domain (public/CNAME) is set up;
+      # once it is, change this to "/"
       - run: npm run build
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

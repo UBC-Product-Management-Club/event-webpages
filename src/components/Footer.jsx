@@ -84,7 +84,7 @@ export default function Footer() {
     <footer className="relative px-5 pb-10 pt-16">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-[1.3fr_0.7fr_0.8fr]">
         <div>
-          <a href="https://ubcpmc.com/" className="mb-8 inline-block" aria-label="UBC PMC home">
+          <a href="https://ubcpmc.com/" target="_top" className="mb-8 inline-block" aria-label="UBC PMC home">
             <img src={asset('pmc-logo.png')} alt="pmc" className="h-24 w-auto" />
           </a>
           <Newsletter />
@@ -93,7 +93,7 @@ export default function Footer() {
         <ul className="space-y-3">
           {FOOTER_LINKS.map((l) => (
             <li key={l.label}>
-              <a href={l.href} className="text-base font-semibold text-mist/80 transition hover:text-gold-200">
+              <a href={l.href} target="_top" className="text-base font-semibold text-mist/80 transition hover:text-gold-200">
                 {l.label}
               </a>
             </li>
