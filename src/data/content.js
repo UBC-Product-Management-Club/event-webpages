@@ -6,8 +6,10 @@ export const EVENT = {
   name: 'Product Jackpot',
   tagline: "PMC'S 24 HOUR PRODUCT CHALLENGE",
   dateLabel: 'November 28–29, 2026',
-  // Countdown target: Saturday Nov 28, 2026, 9:00 AM Pacific
+  // Event start: Saturday Nov 28, 2026, 9:00 AM Pacific
   startISO: '2026-11-28T09:00:00-08:00',
+  // Countdown target: registration opens Tuesday Oct 27, 2026, 12:00 AM Pacific (PDT)
+  registrationOpensISO: '2026-10-27T00:00:00-07:00',
 
   registerUrl: '', // TODO: paste the registration link, e.g. https://portal.ubcpmc.com/events/<id>/register
   pricing: '', // TODO: e.g. "$10 per participant". Empty shows "details coming soon".

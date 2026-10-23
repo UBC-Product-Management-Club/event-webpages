@@ -52,11 +52,11 @@ function Unit({ value, label }) {
 }
 
 export default function Countdown() {
-  const c = useCountdown(EVENT.startISO)
+  const c = useCountdown(EVENT.registrationOpensISO)
   return (
     <div className="ticket p-5 sm:p-6" style={{ containerType: 'inline-size' }}>
       <p className="mb-5 text-center text-xs font-bold uppercase tracking-[0.35em] text-gold-400 sm:text-sm">
-        {c.done ? 'The pot is open' : 'The pot opens in'}
+        {c.done ? 'Registration is open' : 'Registration opens in'}
       </p>
       <div className="grid grid-cols-4 gap-[2.5cqw]">
         <Unit value={c.days} label="Days" />

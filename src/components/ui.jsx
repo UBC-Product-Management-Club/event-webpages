@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { motion } from 'motion/react'
 import { EVENT } from '../data/content'
 
@@ -80,48 +79,37 @@ export function Float({ children, amp = 12, rot = 2, duration = 6, delay = 0, cl
   )
 }
 
-/** Register button. Shows a friendly note until EVENT.registerUrl is filled in. */
+/**
+ * Register button. Until EVENT.registerUrl is filled in it reads
+ * "Registration Opens Soon" and isn't clickable.
+ */
 export function RegisterButton({ className = '', children = 'Register now' }) {
-  const [note, setNote] = useState(false)
   const url = EVENT.registerUrl
-  const onClick = (e) => {
-    if (!url) {
-      e.preventDefault()
-      setNote(true)
-      setTimeout(() => setNote(false), 3500)
-    }
-  }
   return (
     <span className={`relative inline-flex flex-col items-start ${className}`}>
-      <a
-        href={url || '#register'}
-        onClick={onClick}
-        className="btn-gold"
-        {...(url ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      >
-        {children}
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-      </a>
-      {note && (
-        <span role="status" className="absolute left-0 top-full mt-2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-xs text-gold-200">
-          Registration opens soon. Check back!
-        </span>
+      {url ? (
+        <a href={url} className="btn-gold" target="_blank" rel="noopener noreferrer">
+          {children}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      ) : (
+        <span className="btn-gold cursor-default">Registration Opens Soon</span>
       )}
     </span>
   )
 }
 
 /** A button that is a playing card (used in the hero) */
-export function CardButton({ suit = 'heart', rank = 'A', lines = [], href, onClick, rotate = 0, external = false }) {
+export function CardButton({ suit = 'heart', rank = 'A', lines = [], href, onClick, rotate = 0, external = false, textSize = '11.5cqw' }) {
   const s = SUITS[suit]
   return (
     <motion.a
       href={href}
       onClick={onClick}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      className={`pcard ${s.tone} block w-[9.4rem] cursor-pointer select-none sm:w-44`}
+      className={`pcard ${s.tone} block w-[9.4rem] select-none sm:w-44 ${href ? 'cursor-pointer' : 'cursor-default'}`}
       style={{ rotate }}
       whileHover={{ y: -14, rotate: 0, scale: 1.06 }}
       whileTap={{ scale: 0.97 }}
@@ -133,7 +121,7 @@ export function CardButton({ suit = 'heart', rank = 'A', lines = [], href, onCli
       </span>
       <span className="absolute inset-0 flex flex-col items-center justify-center gap-[5cqw] px-[10cqw] text-center">
         <img src={asset(s.img)} alt="" style={{ width: '26cqw' }} />
-        <span className="text-[11.5cqw] font-extrabold uppercase leading-[1.12] tracking-[0.03em]" style={{ fontFamily: 'var(--font-sans)' }}>
+        <span className="font-extrabold uppercase leading-[1.12] tracking-[0.03em]" style={{ fontFamily: 'var(--font-sans)', fontSize: textSize }}>
           {lines.map((l) => (
             <span className="block" key={l}>{l}</span>
           ))}
@@ -147,25 +135,12 @@ export function CardButton({ suit = 'heart', rank = 'A', lines = [], href, onCli
   )
 }
 
-/** Register as a playing card. Shows a friendly note until EVENT.registerUrl is filled in. */
+/** Register as a playing card. Reads "Registration opens soon" until EVENT.registerUrl is filled in. */
 export function RegisterCard({ rotate = -5 }) {
-  const [note, setNote] = useState(false)
   const url = EVENT.registerUrl
-  const onClick = (e) => {
-    if (!url) {
-      e.preventDefault()
-      setNote(true)
-      setTimeout(() => setNote(false), 3500)
-    }
-  }
-  return (
-    <span className="relative inline-block">
-      <CardButton suit="heart" lines={['Register', 'now']} href={url || '#register'} onClick={onClick} rotate={rotate} external={!!url} />
-      {note && (
-        <span role="status" className="absolute left-1/2 top-full z-20 mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/80 px-3 py-1.5 text-xs text-gold-200">
-          Registration opens soon. Check back!
-        </span>
-      )}
-    </span>
+  return url ? (
+    <CardButton suit="heart" lines={['Register', 'now']} href={url} rotate={rotate} external />
+  ) : (
+    <CardButton suit="heart" lines={['Registration', 'opens soon']} rotate={rotate} textSize="9cqw" />
   )
 }
