@@ -1,5 +1,5 @@
 import { MENTORS } from '../data/content'
-import ShuffleDeal from './ShuffleDeal'
+import FanHand from './FanHand'
 import { PlayingCard, Section, SectionHeading, SUITS, asset } from './ui'
 
 // pip positions (x%, y%, upside-down?) for the number cards
@@ -83,7 +83,7 @@ export default function Mentors() {
       </SectionHeading>
 
       <div className="mx-auto max-w-6xl">
-        <ShuffleDeal
+        <FanHand
           className={has ? 'grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-4' : 'grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4'}
           items={has ? personItems(MENTORS) : placeholderItems}
         />
