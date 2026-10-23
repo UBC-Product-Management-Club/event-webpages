@@ -1,6 +1,6 @@
 # Product Jackpot
 
-Event site for PMC's 24 Hour Product Challenge, Nov 28-29, 2026.
+Event site for PMC's 24 Hour Product Challenge, Nov 21-22, 2026.
 
 ```bash
 npm install

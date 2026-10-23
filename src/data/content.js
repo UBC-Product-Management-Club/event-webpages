@@ -5,9 +5,9 @@
 export const EVENT = {
   name: 'Product Jackpot',
   tagline: "PMC'S 24 HOUR PRODUCT CHALLENGE",
-  dateLabel: 'November 28–29, 2026',
-  // Event start: Saturday Nov 28, 2026, 9:00 AM Pacific
-  startISO: '2026-11-28T09:00:00-08:00',
+  dateLabel: 'November 21–22, 2026',
+  // Event start: Saturday Nov 21, 2026, 9:00 AM Pacific
+  startISO: '2026-11-21T09:00:00-08:00',
   // Countdown target: registration opens Tuesday Oct 27, 2026, 12:00 AM Pacific (PDT)
   registrationOpensISO: '2026-10-27T00:00:00-07:00',
 
@@ -43,7 +43,7 @@ export const WHY_JOIN = [
 export const SCHEDULE = [
   {
     day: 'Day 1',
-    date: 'Saturday, November 28',
+    date: 'Saturday, November 21',
     summary: 'Registration, kickoff, workshop, team formation, hacking, mentorship',
     items: [
       { time: '9:00 AM', label: 'Registration' },
@@ -56,7 +56,7 @@ export const SCHEDULE = [
   },
   {
     day: 'Day 2',
-    date: 'Sunday, November 29',
+    date: 'Sunday, November 22',
     summary: 'Final submissions, judging, finals, awards',
     items: [
       { time: '10:00 AM', label: 'Check-In Deadline' },
