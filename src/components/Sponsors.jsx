@@ -47,11 +47,14 @@ function Glass({ children }) {
 }
 
 /** Slides in from the right like a glass pushed along a bar, then stops in its spot */
-function GlassCell({ i, s, go }) {
+function GlassCell({ i, s }) {
   const Wrapper = s?.url ? 'a' : 'div'
   const dur = 1.5 + i * 0.16
+  // Watch the (stationary) cell, not the glass: it starts off-screen, so it can't trigger itself.
+  const cellRef = useRef(null)
+  const go = useInView(cellRef, { once: true, margin: '-80px' })
   return (
-    <div className="relative w-1/2 md:w-1/4">
+    <div ref={cellRef} className="relative w-1/2 md:w-1/4">
       <motion.div
         initial={{ x: '125vw', skewX: -7 }}
         animate={go ? { x: 0, skewX: 0 } : { x: '125vw', skewX: -7 }}
@@ -99,18 +102,15 @@ function GlassCell({ i, s, go }) {
 export default function Sponsors() {
   const has = SPONSORS.length > 0
   const items = has ? SPONSORS : [null, null, null, null]
-  // Watch the (stationary) row, not the glasses: they start off-screen, so they can't trigger themselves.
-  const rowRef = useRef(null)
-  const go = useInView(rowRef, { once: true, margin: '-80px' })
   return (
     <Section id="sponsors">
       <SectionHeading>
         Our <span className="brand-text">sponsors</span>
       </SectionHeading>
 
-      <div ref={rowRef} className="flex flex-wrap justify-center gap-y-14">
+      <div className="flex flex-wrap justify-center gap-y-14">
         {items.map((s, i) => (
-          <GlassCell key={s?.name ?? i} i={i} s={s} go={go} />
+          <GlassCell key={s?.name ?? i} i={i} s={s} />
         ))}
       </div>
 

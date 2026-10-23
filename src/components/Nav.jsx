@@ -35,7 +35,9 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <RegisterButton className="hidden sm:inline-flex [&_.btn-gold]:px-5 [&_.btn-gold]:py-2 [&_.btn-gold]:text-xs">Register</RegisterButton>
+          <div className="hidden sm:block">
+            <RegisterButton className="[&_.btn-gold]:px-5 [&_.btn-gold]:py-2 [&_.btn-gold]:text-xs">Register</RegisterButton>
+          </div>
           <button
             className="grid h-10 w-10 place-items-center rounded-lg border border-white/20 lg:hidden"
             onClick={() => setOpen((o) => !o)}
