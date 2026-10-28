@@ -123,8 +123,6 @@ export const CONTACT_EMAILS = ['partnerships@ubcpmc.com', 'connect@ubcpmc.com']
 
 export const SOCIALS = [
   { name: 'Instagram', href: 'https://www.instagram.com/ubcpmc', icon: 'instagram' },
-  { name: 'Facebook', href: 'https://www.facebook.com/ubcpmc/', icon: 'facebook' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/company/ubc-product-management-club/', icon: 'linkedin' },
-  { name: 'YouTube', href: 'https://www.youtube.com/@ubcpmc', icon: 'youtube' },
   { name: 'Linktree', href: 'https://linktr.ee/ubcpmc', icon: 'link' },
 ]

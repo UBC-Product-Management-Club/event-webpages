@@ -9,18 +9,11 @@ const ICONS = {
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </>
   ),
-  facebook: <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1z" />,
   linkedin: (
     <>
       <rect x="3" y="9" width="4" height="12" />
       <circle cx="5" cy="5" r="2" />
       <path d="M10 9h4v2c1-1.5 2.5-2.3 4-2.3 3 0 4 2 4 5V21h-4v-6c0-1.5-.5-2.5-2-2.5S14 13.5 14 15v6h-4z" />
-    </>
-  ),
-  youtube: (
-    <>
-      <rect x="2" y="5" width="20" height="14" rx="4" />
-      <path d="M10 9l5 3-5 3z" fill="currentColor" />
     </>
   ),
   link: (
