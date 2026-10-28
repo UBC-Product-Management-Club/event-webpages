@@ -291,13 +291,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.8} y={16}>
-            <div className="mt-4 inline-flex items-center gap-4 rounded-2xl border border-dashed border-gold-400/50 bg-black/25 px-5 py-3">
-              <img src={asset('chip-blue.png')} alt="" className="h-9 w-9" />
-              <div>
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-gold-400">Pricing</p>
-                <p className="text-sm font-semibold text-mist sm:text-base">{EVENT.pricing || 'Details coming soon'}</p>
-              </div>
-            </div>
+            <p className="gold-text mt-4 whitespace-pre-line text-sm font-extrabold uppercase leading-snug tracking-[0.14em] sm:text-lg">{EVENT.pricing || 'Details coming soon'}</p>
           </Reveal>
         </div>
 

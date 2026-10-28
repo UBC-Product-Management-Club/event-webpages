@@ -13,7 +13,7 @@ export const EVENT = {
   registrationOpensISO: '2026-11-01T00:00:00-07:00',
 
   registerUrl: '', // TODO: paste the registration link, e.g. https://portal.ubcpmc.com/events/<id>/register
-  pricing: '', // TODO: e.g. "$10 per participant". Empty shows "details coming soon".
+  pricing: '$9 for members\n$15 for non-members',
 
   contactEmail: 'connect@ubcpmc.com',
   // Loops "custom form" endpoint for the footer newsletter (public, no API key needed)
