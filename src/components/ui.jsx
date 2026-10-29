@@ -141,6 +141,6 @@ export function RegisterCard({ rotate = -5 }) {
   return url ? (
     <CardButton suit="heart" lines={['Register', 'now']} href={url} rotate={rotate} external />
   ) : (
-    <CardButton suit="heart" lines={['Registration', 'opens Nov 1']} rotate={rotate} textSize="9cqw" />
+    <CardButton suit="heart" lines={['Registration', 'opens Nov 4']} rotate={rotate} textSize="9cqw" />
   )
 }

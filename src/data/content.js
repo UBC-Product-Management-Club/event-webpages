@@ -8,9 +8,8 @@ export const EVENT = {
   dateLabel: 'November 21–22, 2026',
   // Event start: Saturday Nov 21, 2026, 9:00 AM Pacific
   startISO: '2026-11-21T09:00:00-08:00',
-  // Countdown target: registration opens Sunday Nov 1, 2026, 12:00 AM Pacific
-  // (still PDT at midnight; clocks fall back to PST at 2 AM that day)
-  registrationOpensISO: '2026-11-01T00:00:00-07:00',
+  // Countdown target: registration opens Wednesday Nov 4, 2026, 12:00 AM Pacific (PST)
+  registrationOpensISO: '2026-11-04T00:00:00-08:00',
 
   registerUrl: '', // TODO: paste the registration link, e.g. https://portal.ubcpmc.com/events/<id>/register
   pricing: '$9 for members\n$15 for non-members',
