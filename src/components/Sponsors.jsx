@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
-import { EVENT, SPONSORS } from '../data/content'
+import { EVENT, MAIN_SPONSOR, SPONSORS } from '../data/content'
 import { Reveal, Section, SectionHeading, asset } from './ui'
 
 /** A rocks glass (old-fashioned tumbler) with ice. The sponsor sits on a label on the glass. */
@@ -99,6 +99,33 @@ function GlassCell({ i, s }) {
   )
 }
 
+/** The main sponsor gets its own framed panel above the bar: logo on top, blurb underneath */
+function MainSponsor({ s }) {
+  const Wrapper = s.url ? 'a' : 'div'
+  return (
+    <Reveal className="mx-auto mb-20 max-w-3xl">
+      {/* thin gold frame around a deep maroon panel, like the gold-trimmed tables */}
+      <div
+        className="rounded-3xl p-[2px]"
+        style={{ background: 'linear-gradient(160deg,#ffd9a8,#a8651d 40%,#ffd9a8 60%,#7a4a14)', boxShadow: '0 30px 60px rgba(0,0,0,.5)' }}
+      >
+        <div
+          className="rounded-[calc(1.5rem-2px)] px-6 py-10 text-center sm:px-12 sm:py-12"
+          style={{ background: 'radial-gradient(ellipse at 50% 0%, #4a0812 0%, #2e0309 60%, #1f0006 100%)', boxShadow: 'inset 0 0 0 6px rgba(26,0,0,.6), inset 0 0 0 7px rgba(232,165,75,.35)' }}
+        >
+          <Wrapper
+            {...(s.url ? { href: s.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
+            className="mx-auto block w-32 overflow-hidden rounded-2xl bg-white shadow-[0_0_0_2px_#a8651d,0_10px_30px_rgba(0,0,0,0.45)] sm:w-36"
+          >
+            <img src={asset(s.logo)} alt={s.name} className="aspect-square w-full object-contain" />
+          </Wrapper>
+          <p className="mt-7 leading-relaxed text-mist/80">{s.description}</p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
 export default function Sponsors() {
   const has = SPONSORS.length > 0
   const items = has ? SPONSORS : [null, null, null, null]
@@ -107,6 +134,8 @@ export default function Sponsors() {
       <SectionHeading>
         Our <span className="brand-text">sponsors</span>
       </SectionHeading>
+
+      {MAIN_SPONSOR && <MainSponsor s={MAIN_SPONSOR} />}
 
       <div className="flex flex-wrap justify-center gap-y-14">
         {items.map((s, i) => (

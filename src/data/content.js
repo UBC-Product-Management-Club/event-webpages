@@ -70,6 +70,15 @@ export const SCHEDULE = [
   },
 ]
 
+// Main (title) sponsor: gets its own featured section above the glasses. Logo file lives in public/assets.
+export const MAIN_SPONSOR = {
+  name: 'GeoComply',
+  logo: 'geocomply-logo.png',
+  url: 'https://www.geocomply.com',
+  description:
+    'GeoComply is a Vancouver-based tech unicorn that specializes in fraud prevention, helping businesses figure out who’s really using their apps and where they really are. It started in legal online sports betting, where every bet has to come from someone physically inside a state that allows it. Today, the same technology helps streaming services keep shows in the right countries and helps banking apps catch fraud. Since location is one of the hardest things to fake online, GeoComply combines GPS, Wi-Fi, and device signals to detect VPNs, spoofing, and other fraud tactics.',
+}
+
 // Add confirmed sponsors here. Example:
 // { name: 'Acme', logo: '/assets/sponsors/acme.png', url: 'https://acme.com', description: 'Case sponsor. Acme builds…', tier: 'Case Sponsor' }
 export const SPONSORS = []
