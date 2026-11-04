@@ -10,7 +10,8 @@ npm run build    # outputs dist/
 
 ## Editing content
 Everything editable is in `src/data/content.js`:
-- `EVENT.registerUrl`: paste the registration link (until then the Register buttons show "opens soon").
+- `EVENT.registrationOpensISO` / `EVENT.registrationClosesISO`: drive the countdown and the Register buttons.
+- `EVENT.registerUrl`: where the Register buttons go while registration is open.
 - `EVENT.pricing`: paste pricing text, e.g. `"$10 per participant"` (until then "details coming soon").
 - `SPONSORS`, `MENTORS`: add entries; the placeholder cards disappear automatically once the arrays have items.
 - Headshots/logos go in `public/assets/people/` and `public/assets/sponsors/`.

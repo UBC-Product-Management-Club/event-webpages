@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { EVENT } from '../data/content'
+import { useRegistrationStatus } from './ui'
 
 function useCountdown(iso) {
   const target = new Date(iso).getTime()
@@ -52,18 +53,22 @@ function Unit({ value, label }) {
 }
 
 export default function Countdown() {
-  const c = useCountdown(EVENT.registrationOpensISO)
+  const status = useRegistrationStatus()
+  const c = useCountdown(status === 'upcoming' ? EVENT.registrationOpensISO : EVENT.registrationClosesISO)
+  const heading = { upcoming: 'Registration opens in', open: 'Registration closes in', closed: 'Registration is closed' }[status]
   return (
     <div className="ticket p-5 sm:p-6" style={{ containerType: 'inline-size' }}>
-      <p className="mb-5 text-center text-xs font-bold uppercase tracking-[0.35em] text-gold-400 sm:text-sm">
-        {c.done ? 'Registration is open' : 'Registration opens in'}
+      <p className={`text-center text-xs font-bold uppercase tracking-[0.35em] text-gold-400 sm:text-sm ${status === 'closed' ? '' : 'mb-5'}`}>
+        {heading}
       </p>
-      <div className="grid grid-cols-4 gap-[2.5cqw]">
-        <Unit value={c.days} label="Days" />
-        <Unit value={c.hours} label="Hours" />
-        <Unit value={c.minutes} label="Mins" />
-        <Unit value={c.seconds} label="Secs" />
-      </div>
+      {status !== 'closed' && (
+        <div className="grid grid-cols-4 gap-[2.5cqw]">
+          <Unit value={c.days} label="Days" />
+          <Unit value={c.hours} label="Hours" />
+          <Unit value={c.minutes} label="Mins" />
+          <Unit value={c.seconds} label="Secs" />
+        </div>
+      )}
     </div>
   )
 }

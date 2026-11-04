@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { EVENT } from '../data/content'
 
@@ -79,23 +80,40 @@ export function Float({ children, amp = 12, rot = 2, duration = 6, delay = 0, cl
   )
 }
 
+function getRegistrationStatus() {
+  const now = Date.now()
+  if (now < new Date(EVENT.registrationOpensISO).getTime()) return 'upcoming'
+  if (now < new Date(EVENT.registrationClosesISO).getTime()) return 'open'
+  return 'closed'
+}
+
+/** 'upcoming', 'open' or 'closed'. Flips on its own, no page reload needed. */
+export function useRegistrationStatus() {
+  const [status, setStatus] = useState(getRegistrationStatus)
+  useEffect(() => {
+    const t = setInterval(() => setStatus(getRegistrationStatus()), 1000)
+    return () => clearInterval(t)
+  }, [])
+  return status
+}
+
 /**
- * Register button. Until EVENT.registerUrl is filled in it reads
- * "Registration Opens Soon" and isn't clickable.
+ * Register button. Only links out while registration is open. Before and after
+ * that it reads "Registration Opens Soon" / "Registration Closed" and isn't clickable.
  */
 export function RegisterButton({ className = '', children = 'Register now' }) {
-  const url = EVENT.registerUrl
+  const status = useRegistrationStatus()
   return (
     <span className={`relative inline-flex flex-col items-start ${className}`}>
-      {url ? (
-        <a href={url} className="btn-gold" target="_blank" rel="noopener noreferrer">
+      {status === 'open' ? (
+        <a href={EVENT.registerUrl} className="btn-gold" target="_blank" rel="noopener noreferrer">
           {children}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </a>
       ) : (
-        <span className="btn-gold cursor-default">Registration Opens Soon</span>
+        <span className="btn-gold cursor-default">{status === 'closed' ? 'Registration Closed' : 'Registration Opens Soon'}</span>
       )}
     </span>
   )
@@ -135,12 +153,12 @@ export function CardButton({ suit = 'heart', rank = 'A', lines = [], href, onCli
   )
 }
 
-/** Register as a playing card. Reads "Registration opens soon" until EVENT.registerUrl is filled in. */
+/** Register as a playing card. Only links out while registration is open. */
 export function RegisterCard({ rotate = -5 }) {
-  const url = EVENT.registerUrl
-  return url ? (
-    <CardButton suit="heart" lines={['Register', 'now']} href={url} rotate={rotate} external />
+  const status = useRegistrationStatus()
+  return status === 'open' ? (
+    <CardButton suit="heart" lines={['Register', 'now']} href={EVENT.registerUrl} rotate={rotate} external />
   ) : (
-    <CardButton suit="heart" lines={['Registration', 'opens Nov 4']} rotate={rotate} textSize="9cqw" />
+    <CardButton suit="heart" lines={['Registration', status === 'closed' ? 'closed' : 'opens Nov 4']} rotate={rotate} textSize="9cqw" />
   )
 }
