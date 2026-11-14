@@ -289,10 +289,6 @@ export default function Hero() {
               </Float>
             </div>
           </Reveal>
-
-          <Reveal delay={0.8} y={16}>
-            <p className="gold-text mt-4 whitespace-pre-line text-sm font-extrabold uppercase leading-snug tracking-[0.14em] sm:text-lg">{EVENT.pricing || 'Details coming soon'}</p>
-          </Reveal>
         </div>
 
         <RouletteGeary />

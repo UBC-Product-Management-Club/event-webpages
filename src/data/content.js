@@ -14,7 +14,6 @@ export const EVENT = {
   registrationClosesISO: '2026-11-17T23:59:00-08:00',
 
   registerUrl: 'https://portal.ubcpmc.com/',
-  pricing: '$9 for members\n$15 for non-members',
 
   contactEmail: 'connect@ubcpmc.com',
   // Loops "custom form" endpoint for the footer newsletter (public, no API key needed)
