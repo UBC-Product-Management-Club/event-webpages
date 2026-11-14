@@ -8,11 +8,10 @@ export const EVENT = {
   dateLabel: 'November 21–22, 2026',
   // Event start: Saturday Nov 21, 2026, 9:00 AM Pacific
   startISO: '2026-11-21T09:00:00-08:00',
-  // Countdown targets: registration opens Wednesday Nov 4, 2026, 8:00 AM Vancouver time,
-  // then closes Sunday Nov 15, 2026, 11:59 PM Vancouver time. Register buttons follow these.
-  // BC stays on UTC-7 year-round, so these use -07:00 rather than PST's -08:00.
+  // Countdown targets: registration opens Wednesday Nov 4, 2026, 8:00 AM,
+  // then closes Tuesday Nov 17, 2026, 11:59 PM Pacific (UTC-8). Register buttons follow these.
   registrationOpensISO: '2026-11-04T08:00:00-07:00',
-  registrationClosesISO: '2026-11-15T23:59:00-07:00',
+  registrationClosesISO: '2026-11-17T23:59:00-08:00',
 
   registerUrl: 'https://portal.ubcpmc.com/',
   pricing: '$9 for members\n$15 for non-members',
