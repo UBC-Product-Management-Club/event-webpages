@@ -64,10 +64,10 @@ function GlassCell({ i, s }) {
         }}
         className="relative z-10 px-3"
       >
-        <Wrapper {...(s?.url ? { href: s.url, target: '_blank', rel: 'noopener noreferrer' } : {})} className="block">
+        <Wrapper {...(s?.url ? { href: s.url, target: '_blank', rel: 'noopener noreferrer', 'aria-label': s.name } : {})} className="block">
           <Glass>
             {s ? (
-              <img src={s.logo} alt={s.name} className="max-h-full max-w-full object-contain" />
+              <img src={asset(s.logo)} alt={s.name} className="max-h-full max-w-full object-contain" />
             ) : (
               <div className="text-center">
                 <img src={asset(i % 2 ? 'chip-blue.png' : 'chip-red.png')} alt="" className="mx-auto h-8 w-8" />
@@ -79,22 +79,23 @@ function GlassCell({ i, s }) {
       </motion.div>
       {/* the bar top stays put while the glass slides */}
       <div className="bar-top -mt-[18px]" />
-      <motion.div
-        className="mt-5 px-3 text-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: go ? 1 : 0 }}
-        transition={{ delay: go ? dur + i * 0.18 - 0.4 : 0, duration: 0.6 }}
-      >
-        {s ? (
-          <>
-            {s.tier && <p className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-gold-400">{s.tier}</p>}
-            <h3 className="text-lg font-extrabold">{s.name}</h3>
-            {s.description && <p className="mt-1 text-sm leading-relaxed text-mist/70">{s.description}</p>}
-          </>
-        ) : (
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-mist/50">Coming soon</p>
-        )}
-      </motion.div>
+      {(!s || s.tier || s.description) && (
+        <motion.div
+          className="mt-5 px-3 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: go ? 1 : 0 }}
+          transition={{ delay: go ? dur + i * 0.18 - 0.4 : 0, duration: 0.6 }}
+        >
+          {s ? (
+            <>
+              {s.tier && <p className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-gold-400">{s.tier}</p>}
+              {s.description && <p className="mt-1 text-sm leading-relaxed text-mist/70">{s.description}</p>}
+            </>
+          ) : (
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-mist/50">Coming soon</p>
+          )}
+        </motion.div>
+      )}
     </div>
   )
 }

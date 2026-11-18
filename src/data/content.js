@@ -84,9 +84,13 @@ export const MAIN_SPONSOR = {
     'GeoComply is a Vancouver-based tech unicorn that specializes in fraud prevention, helping businesses figure out who’s really using their apps and where they really are. It started in legal online sports betting, where every bet has to come from someone physically inside a state that allows it. Today, the same technology helps streaming services keep shows in the right countries and helps banking apps catch fraud. Since location is one of the hardest things to fake online, GeoComply combines GPS, Wi-Fi, and device signals to detect VPNs, spoofing, and other fraud tactics.',
 }
 
-// Add confirmed sponsors here. Example:
-// { name: 'Acme', logo: '/assets/sponsors/acme.png', url: 'https://acme.com', description: 'Case sponsor. Acme builds…', tier: 'Case Sponsor' }
-export const SPONSORS = []
+// Add confirmed sponsors here. Logo files live in public/assets and are loaded with asset().
+// { name: 'Acme', logo: 'acme.png', url: 'https://acme.com', description: 'Case sponsor. Acme builds…', tier: 'Case Sponsor' }
+export const SPONSORS = [
+  { name: 'Bon Macaron', logo: 'bon-macaron.png', url: 'https://bonmacaronpatisserie.com/' },
+  { name: 'Loafe', logo: 'loafe.webp', url: 'https://loafe.ca/' },
+  { name: 'Teadot', logo: 'teadot.webp', url: 'https://www.teadotdrinks.com/' },
+]
 
 // Add confirmed mentors/judges here. Example:
 // { name: 'Jane Doe', role: 'Senior PM', company: 'Acme', photo: '/assets/people/jane.jpg', type: 'Mentor', linkedin: 'https://linkedin.com/in/…' }
