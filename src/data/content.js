@@ -92,9 +92,101 @@ export const SPONSORS = [
   { name: 'Teadot', logo: 'teadot.webp', url: 'https://www.teadotdrinks.com/' },
 ]
 
-// Add confirmed mentors/judges here. Example:
-// { name: 'Jane Doe', role: 'Senior PM', company: 'Acme', photo: '/assets/people/jane.jpg', type: 'Mentor', linkedin: 'https://linkedin.com/in/…' }
-export const MENTORS = []
+// Add confirmed mentors/judges here. Photos live in public/assets/mentors, company logos in public/assets/logos.
+// type: 'Mentor' or 'Judge'. bio shows on the card when someone hovers or taps it.
+export const MENTORS = [
+  {
+    name: 'Nathaniel Wong',
+    pronouns: 'He/Him',
+    role: 'Senior Product Manager',
+    company: 'Asana',
+    companyLogo: 'logos/asana.svg',
+    photo: 'mentors/nathaniel-wong.jpeg',
+    type: 'Mentor',
+    bio: "Hey all, I'm Nat! I was born and raised in Ottawa, studied Computer Engineering at Queen's University, and now working at Asana as a Senior Product Manager. Previously, I worked at Microsoft on Word/Excel/PowerPoint.",
+  },
+  {
+    name: 'Nishita Alagh',
+    pronouns: 'She/Her',
+    role: 'B2B Product Marketing Manager',
+    company: 'Pictory AI',
+    companyLogo: 'logos/pictory.png',
+    photo: 'mentors/nishita-alagh.jpg',
+    type: 'Mentor',
+    bio: "Nishita is a Product Marketing Manager, who operates at the intersection of product, marketing, and research. She leads B2B GTM at Pictory, but had accidentally found her way into the field in 2021, when her researcher role at an early-stage SaaS startup quietly evolved into a founding PMM position. Since then, she's stepped into the role two more times, learning to use her focus on understanding people as the foundation for effective marketing strategy. When she's not doing that, she feeds her psychologist brain by reading memoirs and learning new languages.",
+  },
+  {
+    name: 'Subhash Bhushan',
+    pronouns: 'He/Him',
+    role: 'CTO and VP',
+    company: 'Team8 Solutions LLC',
+    companyLogo: 'logos/team8.svg',
+    photo: 'mentors/subhash-bhushan.jpg',
+    photoZoom: '90%',
+    type: 'Mentor',
+    bio: "I've built software products for twenty-three years. I co-founded JustBooks, a chain of lending libraries in India that grew from one store to 63 across eleven cities on software I built, and I'm now co-founder and CTO of Team8 Solutions, where I also build Protean, an open-source framework. I can help teams at any stage from idea to working demo, and most of all with narrowing the problem, cutting the scope down to a buildable first version, and judging what's technically feasible, including where AI helps and where it doesn't.",
+  },
+  {
+    name: 'Harshad Shinde',
+    pronouns: 'He/Him',
+    role: 'Senior Product Manager',
+    company: 'Versapay',
+    companyLogo: 'logos/versapay.svg',
+    photo: 'mentors/harshad-shinde.jpeg',
+    type: 'Mentor',
+    bio: "I'm a Senior Product Manager with 8+ years in B2B SaaS, specializing in fintech, payments, tax compliance, and ERP integrations, currently building AR automation on a ledger platform. I've spent my career taking messy, early-stage ideas and shaping them into validated problems and shippable products, working closely with engineering, design, and customers along the way. Outside of work I mentor aspiring product managers breaking into tech, and I'm a builder at heart who loves a good hackathon sprint.",
+  },
+  {
+    name: 'Nasmaan Ibrahim',
+    pronouns: 'He/Him',
+    role: 'Strategy & Special Projects Associate',
+    company: 'Elective',
+    companyLogo: 'logos/elective.jpg',
+    photo: 'mentors/nasmaan-ibrahim.jpg',
+    type: 'Mentor',
+    bio: "Hi everyone, I'm Nasmaan! I graduated from UBC Sauder, co-founded a couple of startups, and now work at Elective, a Vancouver fintech. I'm most useful early on, when you're still working out what the problem actually is and what to build first, and again at the end when it's time to pitch. Bring me your half-formed ideas. Every good product started as one, and I'd love to help you shape yours.",
+  },
+  {
+    name: 'Madiha Thaver',
+    pronouns: 'She/Her',
+    role: 'AI Product Manager',
+    company: 'Casper Studios',
+    companyLogo: 'logos/casper-studios.png',
+    photo: 'mentors/madiha-thaver.jpeg',
+    type: 'Mentor',
+    bio: "Hey everyone, I'm Madiha! I studied Marketing and Entrepreneurship at UBC Sauder and currently work as an AI Product Manager at Casper Studios. I help businesses identify opportunities to leverage AI and build solutions that improve how they work. I'm excited to help students with product discovery, strategy, and turning their ideas into real-world solutions!",
+  },
+  {
+    name: 'Bhavesh Ratanpal',
+    pronouns: 'He/Him',
+    role: 'Founder',
+    company: 'Xappert Incorporated',
+    companyLogo: 'logos/xappert.png',
+    photo: 'mentors/bhavesh-ratanpal.png',
+    type: 'Mentor',
+    bio: "I'm Bhavesh Ratanpal, founder of Xappert Inc — I help teams with product strategy, PM coaching, and shipping SaaS, including NitiCodeAI, a governance-first AI product for BC strata councils. Day to day I work across discovery and problem framing, prioritization, MVP scoping, and early go-to-market with real users. I can best support participants from problem discovery through first release and early traction, especially founder-led and B2B SaaS products.",
+  },
+  {
+    name: 'Simran Sran',
+    pronouns: 'He/Him',
+    role: 'Senior Technical Product Manager',
+    company: 'Amazon',
+    companyLogo: 'logos/amazon.png',
+    photo: 'mentors/simran-sran.jpeg',
+    type: 'Mentor',
+    bio: "I have 12 years of experience turning ideas into products (and occasionally turning coffee into roadmaps). From “I have an idea” to “Why aren’t customers using it?”, I can help at every stage of the product journey.",
+  },
+  {
+    name: 'Michelle Mak',
+    pronouns: 'She/Her',
+    role: 'Product Manager',
+    company: 'Ticketmaster',
+    companyLogo: 'logos/ticketmaster.png',
+    photo: 'mentors/michelle-mak.png',
+    type: 'Mentor',
+    bio: "Toronto-born and West Coast based, Michelle originally joined Ticketmaster as an intern while pursuing her Master’s degree at SFU. In that time, she was quick to take initiative in leading her own team & owning project lifecycles. Outside of work, Michelle prioritizes movement & keeping active through sports. Off the court/field, Michelle is always looking for ways to innovative & integrate AI into her day to day & automate the PM process!",
+  },
+]
 
 export const FAQ = [
   {

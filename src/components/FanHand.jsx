@@ -12,7 +12,7 @@ const RAD = Math.PI / 180
  *
  * items: [{ key, card, caption, href? }]  (card should fill its box: className="h-full w-full")
  */
-export default function FanHand({ items, className = '' }) {
+export default function FanHand({ items, className = '', itemClassName = 'mx-auto w-full max-w-[210px]' }) {
   const wrapRef = useRef(null)
   const cardRefs = useRef([])
   const inView = useInView(wrapRef, { once: true, margin: '-120px' })
@@ -22,11 +22,14 @@ export default function FanHand({ items, className = '' }) {
   // measure where each card should end up (re-measure on resize)
   useEffect(() => {
     const measure = () => {
+      if (!wrapRef.current) return
+      const nodes = cardRefs.current.slice(0, items.length)
+      if (nodes.length !== items.length || nodes.some((el) => !el)) return
       const base = wrapRef.current.getBoundingClientRect()
       setLayout({
         w: base.width,
         h: base.height,
-        rects: cardRefs.current.map((el) => {
+        rects: nodes.map((el) => {
           const r = el.getBoundingClientRect()
           return { x: r.left - base.left, y: r.top - base.top, w: r.width, h: r.height }
         }),
@@ -94,7 +97,7 @@ export default function FanHand({ items, className = '' }) {
     <div ref={wrapRef} className={`relative ${className}`}>
       {/* invisible slots that define the final layout */}
       {items.map((it, i) => (
-        <div key={it.key} className="mx-auto w-full max-w-[210px]">
+        <div key={it.key} className={itemClassName}>
           <div ref={(el) => (cardRefs.current[i] = el)} className="aspect-[5/7] w-full" aria-hidden />
           <motion.div className="mt-5" initial={{ opacity: 0 }} animate={{ opacity: done ? 1 : 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
             {it.caption}
