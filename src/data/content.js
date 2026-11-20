@@ -92,7 +92,7 @@ export const SPONSORS = [
   { name: 'Teadot', logo: 'teadot.webp', url: 'https://www.teadotdrinks.com/' },
 ]
 
-// Add confirmed mentors/judges here. Photos live in public/assets/mentors, company logos in public/assets/logos.
+// Add confirmed mentors/judges here. Photos live in public/assets/mentors (judges in public/assets/judges), company logos in public/assets/logos.
 // type: 'Mentor' or 'Judge'. bio shows on the card when someone hovers or taps it.
 export const MENTORS = [
   {
@@ -184,7 +184,55 @@ export const MENTORS = [
     companyLogo: 'logos/ticketmaster.png',
     photo: 'mentors/michelle-mak.png',
     type: 'Mentor',
-    bio: "Toronto-born and West Coast based, Michelle originally joined Ticketmaster as an intern while pursuing her Master’s degree at SFU. In that time, she was quick to take initiative in leading her own team & owning project lifecycles. Outside of work, Michelle prioritizes movement & keeping active through sports. Off the court/field, Michelle is always looking for ways to innovative & integrate AI into her day to day & automate the PM process!",
+    bio: "Toronto-born and West Coast based, Michelle originally joined Ticketmaster as an intern while pursuing her Master’s degree at SFU. In that time, she was quick to take initiative in leading her own team & owning project lifecycles. Outside of work, Michelle prioritizes movement & keeping active through sports. Off the court/field, Michelle is always looking for ways to innovate & integrate AI into her day to day & automate the PM process!",
+  },
+  {
+    name: 'Alexandre Morin',
+    pronouns: 'He/Him',
+    role: 'Vice-President / Founder',
+    company: 'ProductBC / Borealis',
+    companyLogo: 'logos/productbc.png',
+    photo: 'judges/alexandre-morin.png',
+    type: 'Judge',
+    bio: "Alexandre Morin is an AI-product builder and product management leader with a background in mobile device management and security. Ex-Apple, he was previously Product Management Lead at Mosyle and spent three years at Kandji as a Senior Product Manager. Today he runs Borealis, and works with Apple as an independent contractor on AI product building and local AI. Alexandre is passionate about mentorship, helping the next generation of product people find their place as AI reshapes the profession.",
+  },
+  {
+    name: 'Priya Vinayagam',
+    pronouns: 'She/Her',
+    role: 'Product Manager',
+    company: 'Workday',
+    companyLogo: 'logos/workday.png',
+    photo: 'judges/priya-vinayagam.jpg',
+    type: 'Judge',
+    bio: "Hi All! I am a fintech Product Manager, currently at Workday Financials. I have also worked at places like Deloitte & SAP as well as startups previously. University of Waterloo alum. I have a background in Management Engineering & Information Systems. Started off as a developer & technical analyst, and pivoted to Product Management a few years ago. Excited to share my experience and professional insights.",
+  },
+  {
+    name: 'Oliver Xie',
+    pronouns: 'He/Him',
+    role: 'Product Manager',
+    company: 'Workday',
+    companyLogo: 'logos/workday.png',
+    photo: 'judges/oliver-xie.jpeg',
+    type: 'Judge',
+    bio: "With a background in Integrated Engineering from UBC, Oliver began his journey with careers in implementation consulting, project management, and technical sales before taking on product management at a Vancouver based B2B SaaS company. Experienced with the full product lifecycle and product strategic thinking, he currently is a Product Manager at Workday taking on enterprise-level industry challenges in the Workday Financials realm.",
+  },
+  {
+    name: 'Tunir Kapil',
+    pronouns: 'He/Him',
+    role: 'Senior Manager - Product Management @ BDC - Analytics',
+    company: 'SAP SE',
+    companyLogo: 'logos/sap.svg',
+    photo: 'judges/tunir-kapil.jpg',
+    type: 'Judge',
+    bio: "Hi, I'm Tunir Kapil, a strategic product leader in Enterprise Analytics. I lead a team of Product Managers driving the product strategy for Business Data Cloud - Analytics (SAP Analytics Cloud), one of SAP's flagship Planning & Analytics platforms. With a deep background in data-driven product development, roadmap definition, and customer discovery, I work at the intersection of Development, User Experience, and Customers to deliver solutions that drive measurable adoption and business impact.",
+  },
+  {
+    name: 'Eleanor Hawkins',
+    role: 'Talent Program Manager',
+    company: 'GeoComply',
+    companyLogo: 'logos/geocomply.png',
+    photo: 'judges/eleanor-hawkins.jpg',
+    type: 'Judge',
   },
 ]
 

@@ -68,7 +68,7 @@ function PersonCard({ person, rank, suit }) {
     >
       <PlayingCard suit={suit} rank={String(rank)} className="h-full w-full">
         <div className={`absolute inset-x-[19cqw] bottom-[14cqw] top-[10cqw] overflow-hidden rounded-[3cqw] border-[0.8cqw] border-[#c98a2f]/80 ${person.photoZoom ? 'bg-white' : 'bg-charcoal'}`}>
-          <img
+          {person.photo && <img
             src={asset(person.photo)}
             alt={person.name}
             className={
@@ -77,7 +77,7 @@ function PersonCard({ person, rank, suit }) {
                 : 'h-full w-full object-cover object-[center_30%]'
             }
             style={person.photoZoom ? { height: person.photoZoom } : undefined}
-          />
+          />}
         </div>
       </PlayingCard>
       {person.bio && (
